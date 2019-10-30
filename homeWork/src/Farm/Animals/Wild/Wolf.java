@@ -1,7 +1,7 @@
 package Farm.Animals.Wild;
 
 public class Wolf extends WildAnimals  {
-    public Wolf(int weight, int speed, int hp, int attack) {
-        super(weight, speed, hp, attack);
+    public Wolf(String title, int weight, int speed, int hp, int attack) {
+        super(title, weight, speed, hp, attack);
     }
 }

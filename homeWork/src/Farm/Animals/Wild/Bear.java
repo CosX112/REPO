@@ -1,7 +1,7 @@
 package Farm.Animals.Wild;
 
 public class Bear extends WildAnimals {
-    public Bear(int weight, int speed, int hp, int attack) {
-        super(weight, speed, hp, attack);
+    public Bear(String title, int weight, int speed, int hp, int attack) {
+        super(title ,weight, speed, hp, attack);
     }
 }

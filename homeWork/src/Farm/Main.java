@@ -3,6 +3,7 @@ package Farm;
 import Farm.Animals.Home.Cat;
 import Farm.Animals.Home.Chicken;
 import Farm.Animals.Home.HomeAnimals;
+import Farm.Animals.Wild.AttackAble;
 import Farm.Animals.Wild.Bear;
 import Farm.Animals.Wild.WildAnimals;
 
@@ -60,13 +61,18 @@ public class Main {
         int day = 0;
         Farmer farmer = new Farmer();
         Chicken derp = new Chicken("Derp", 2, 4, 3, 1);
+        Chicken derp1 = new Chicken("Derp1", 2, 4, 3, 1);
+        Chicken derp2 = new Chicken("Der2", 2, 4, 3, 1);
         Cat boris = new Cat("Boris", 3, 10, 9);
+
         Farm farm = new Farm();
         farm.addHomeAnimal(boris);
         farm.addHomeAnimal(derp);
+        farm.addHomeAnimal(derp1);
+        farm.addHomeAnimal(derp2);
         System.out.println(farm);
         System.out.println(farm.getQty(farm));
-        WildAnimals.attack(farm);
+        AttackAble.attack(farm.getRandomHomeAnimal(farm));
 
 
 
