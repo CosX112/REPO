@@ -2,7 +2,7 @@ package Farm;
 
 public class Farmer {
 
-    int res = 10;
+    int res = 15;
     boolean isAlive = true;
 
     public void eat() {
@@ -21,7 +21,9 @@ public class Farmer {
         System.out.println("Фермер защищает ферму");
     }
 
-    public void feed() {
+    public void feed(Farm farm) {
+        farm.feeding();
+
         System.out.println("Фермер кормит животных");
     }
 

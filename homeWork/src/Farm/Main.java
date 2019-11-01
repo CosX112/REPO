@@ -3,9 +3,10 @@ package Farm;
 import Farm.Animals.Home.Cat;
 import Farm.Animals.Home.Chicken;
 import Farm.Animals.Home.HomeAnimals;
-import Farm.Animals.Wild.AttackAble;
 import Farm.Animals.Wild.Bear;
+import Farm.Animals.Wild.Fox;
 import Farm.Animals.Wild.WildAnimals;
+import Farm.Animals.Wild.Wolf;
 
 import java.util.Arrays;
 
@@ -60,10 +61,14 @@ public class Main {
     public static void main(String[] args) {
         int day = 0;
         Farmer farmer = new Farmer();
-        Chicken derp = new Chicken("Derp", 2, 4, 3, 1);
-        Chicken derp1 = new Chicken("Derp1", 2, 4, 3, 1);
-        Chicken derp2 = new Chicken("Der2", 2, 4, 3, 1);
-        Cat boris = new Cat("Boris", 3, 10, 9);
+        Chicken derp = new Chicken("Курица", 2, 5, 3, 1);
+        Chicken derp1 = new Chicken("Маленькая курица", 2, 5, 3, 1);
+        Chicken derp2 = new Chicken("Великая курица", 2, 5, 3, 1);
+        Cat boris = new Cat("Борис", 3, 10, 9);
+
+        Bear bear = new Bear("Медведь", 50, 4, 30, 30);
+        Fox fox = new Fox("Лисица", 5, 11, 10, 5);
+        Wolf wolf = new Wolf("Волк", 15, 6, 20, 10);
 
         Farm farm = new Farm();
         farm.addHomeAnimal(boris);
@@ -72,15 +77,20 @@ public class Main {
         farm.addHomeAnimal(derp2);
         System.out.println(farm);
         System.out.println(farm.getQty(farm));
-        AttackAble.attack(farm.getRandomHomeAnimal(farm));
-
+        farm.addWildAnimal(bear);
+        farm.addWildAnimal(fox);
+        farm.addWildAnimal(wolf);
+        // AttackAble.attack(farm.getRandomHomeAnimal(farm));
 
 
         while (farmer.isAlive) {
             farmer.eat();
- //           System.out.println(farmer.getRes());
+            //           System.out.println(farmer.getRes());
             farmer.defend();
-            farmer.feed();
+            farm.getRandomWildAnimal(farm).attack(farm.getRandomHomeAnimal(farm), farm);
+            System.out.println(farm);
+
+            farmer.feed(farm);
             farmer.gather();
             System.out.println("День заканчивается");
             day++;
@@ -89,4 +99,5 @@ public class Main {
         System.out.println("Фермер умер от голода на " + day + " день");
 
 
-    }}
+    }
+}

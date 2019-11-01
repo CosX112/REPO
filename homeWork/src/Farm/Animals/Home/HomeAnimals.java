@@ -9,12 +9,13 @@ abstract public class HomeAnimals {
     private int hp;
     int res;
 
-    public HomeAnimals(String name, int weight, int speed, int hp) {
+    HomeAnimals(String name, int weight, int speed, int hp) {
         this.name = name;
         this.weight = weight;
         this.speed = speed;
         this.hp = hp;
     }
+
 
 
     @Override
@@ -27,6 +28,8 @@ abstract public class HomeAnimals {
                 ", res=" + res +
                 '}';
     }
+
+
 
     public String getName() {
         return name;
@@ -53,10 +56,12 @@ abstract public class HomeAnimals {
     }
 
     public int getHp() {
+
         return hp;
     }
 
     public void setHp(int hp) {
+
         this.hp = hp;
     }
 }
