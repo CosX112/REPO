@@ -24,7 +24,7 @@ public class Farmer {
                 isAlive = false;  //меняем флаг жизни на смерть.
 
             } else {
-                res = getRes() + v.getRes();
+                res = getRes() + v.getWeight();
                 System.out.println("Кушать нечего. Фермер убивает свою любимую" + v.getName());
                 farm.killHomeAnimals(v);  // ну и убивает родное животное. специально сделал метод для исключения кота
             }

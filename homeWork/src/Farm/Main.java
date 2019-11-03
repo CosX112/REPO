@@ -70,6 +70,9 @@ public class Main {
         Chicken derp2 = new Chicken("Великая курица", 2, 5, 3, 1);
         Cat boris = new Cat("Борис", 3, 10, 9);
         Cow burenka = new Cow("Бурёнка", 50, 3, 10, 2);
+        Rabbit rabbit = new Rabbit("Кролик",3, 3,3);
+        Rabbit rabbit1 = new Rabbit("Кролик1",3, 3,3);
+        Rabbit rabbit2 = new Rabbit("Кролик2",3, 3,3);
 
         Bear bear = new Bear("Медведь", 50, 6, 30, 30);
         Fox fox = new Fox("Лисица", 5, 11, 10, 5);
@@ -79,8 +82,8 @@ public class Main {
         Wolf wolf1 = new Wolf("Волк", 15, 6, 20, 10);
 
         Farm farm = new Farm();
-        farm.addHomeAnimal(boris, derp, derp1, derp2, burenka);
-        System.out.println(farm);
+        farm.addHomeAnimal(boris, derp, derp1, derp2, burenka, rabbit, rabbit1, rabbit2);
+        //System.out.println(farm);
         // System.out.println(farm.getQty(farm));
         farm.addWildAnimal(bear, wolf, wolf1, fox, fox1, fox2);
        // farm.addWildAnimal(bear);
@@ -105,7 +108,7 @@ public class Main {
             def = farmer.defend(p);  //фермер рандомно защищает или нет ферму
           //  System.out.println(farm);
             p.attack(farm.getRandomHomeAnimal(farm), farm, def);
-        //    System.out.println(farm);
+     //      System.out.println(farm);
         //    System.out.println(farmer.getRes());
 
             farmer.feed(farm);

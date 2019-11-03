@@ -102,6 +102,7 @@ public class Farm {
         for (int i = 0; i < farm.homeAnimals.length; i++) {
             if (farm.homeAnimals[i] != null) {
                 this.homeAnimals[i].setHp(this.homeAnimals[i].getHp() + (int) (Math.random() * this.homeAnimals[i].getMaxHp()));
+                //фермер рандомно лечит животных. не шибко нужная вещь, так как если фермер съест корову - то у него будет достаточно ресурсов чтоб напугать всех лесных животных
             }
         }
 
