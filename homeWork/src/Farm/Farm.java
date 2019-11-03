@@ -32,15 +32,15 @@ public class Farm {
     }
 
 
-    public void addHomeAnimal(HomeAnimals... homeAnimals) {
-        for (int i1 = 0; i1 < homeAnimals.length; i1++) {
+    void addHomeAnimal(HomeAnimals... homeAnimals) {
+        for (HomeAnimals homeAnimal : homeAnimals) {
             for (int i = 0; i < this.homeAnimals.length; i++) {
                 if (this.homeAnimals[i] == null) {
-                    this.homeAnimals[i] = homeAnimals[i1];
+                    this.homeAnimals[i] = homeAnimal;
                     break;
                 }
-                }
             }
+        }
         }
 
 
@@ -86,18 +86,18 @@ public class Farm {
         }
     }
 
-    public void addWildAnimal(WildAnimals... wildAnimals) {
-        for (int i1 = 0; i1 < wildAnimals.length; i1++) {
+    void addWildAnimal(WildAnimals... wildAnimals) {
+        for (WildAnimals wildAnimal : wildAnimals) {
             for (int i = 0; i < this.wildAnimals.length; i++) {
                 if (this.wildAnimals[i] == null) {
-                    this.wildAnimals[i] = wildAnimals[i1];
+                    this.wildAnimals[i] = wildAnimal;
                     break;
                 }
             }
         }
     }
 
-    public void feeding(Farm farm) {
+    void feeding(Farm farm) {
 
         for (int i = 0; i < farm.homeAnimals.length; i++) {
             if (farm.homeAnimals[i] != null) {
@@ -107,7 +107,7 @@ public class Farm {
 
     }
 
-    public int gathering(Farm farm) {
+    int gathering(Farm farm) {
         int res = 0;
         for (int i = 0; i < farm.homeAnimals.length; i++) {
             if (farm.homeAnimals[i] != null) {
@@ -123,23 +123,23 @@ public class Farm {
 
     }
 
-    public HomeAnimals getRandomHomeAnimal(Farm farm) {
+    HomeAnimals getRandomHomeAnimal(Farm farm) {
         int q = 0;
 
 
-        for (int i = 0; i < farm.homeAnimals.length; i++) {   //считаем количество животных на ферме, отдаём его в q
-            if (this.homeAnimals[i] != null) {
+        for (HomeAnimals homeAnimal : farm.homeAnimals) {   //считаем количество животных на ферме, отдаём его в q
+            if (homeAnimal != null) {
                 q++;
             }
         }
 
         int v = (int) (Math.random() * q) + 1;    //рандомно выбираем номер животного(не порядковый в массиве!) и передаём его в v(victim)
-        for (int i1 = 0; i1 < farm.homeAnimals.length; i1++) {  //идём по массиву с целью счёта живых животных. живые животные !=null
-            if (this.homeAnimals[i1] != null) {
+        for (HomeAnimals homeAnimal : farm.homeAnimals) {  //идём по массиву с целью счёта живых животных. живые животные !=null
+            if (homeAnimal != null) {
                 v--;
             }                             //считаем животных. если животное не мертво, убавляем счётчик рандомного животного
             if (v <= 0) {               //когда счётчик рандомного животного станет =0, т.е счётчик дойдёт до жертвы - вернуть животное, соответсвующее номеру в массиве
-                return homeAnimals[i1];
+                return homeAnimal;
 
             }
         }
@@ -150,23 +150,23 @@ public class Farm {
         //не уверен можно ли на запрос не вернуть ничего, но тут бы это пригодилось
     }
 
-    public HomeAnimals getRandomHomeAnimalForFood(Farm farm) {
+    HomeAnimals getRandomHomeAnimalForFood(Farm farm) {
         int q = 0;
 
 
-        for (int i = 0; i < farm.homeAnimals.length; i++) {   //считаем количество животных на ферме, отдаём его в q
-            if (this.homeAnimals[i] != null && !this.homeAnimals[i].getName().equals("Борис")) {
+        for (HomeAnimals homeAnimal : farm.homeAnimals) {   //считаем количество животных на ферме, отдаём его в q
+            if (homeAnimal != null && !homeAnimal.getName().equals("Борис")) {
                 q++;
             }
         }
 
         int v = (int) (Math.random() * q) + 1;    //рандомно выбираем номер животного(не порядковый в массиве!) и передаём его в v(victim)
-        for (int i1 = 0; i1 < farm.homeAnimals.length; i1++) {  //идём по массиву с целью счёта живых животных. живые животные !=null
-            if (this.homeAnimals[i1] != null && !this.homeAnimals[i1].getName().equals("Борис")) {
+        for (HomeAnimals homeAnimal : farm.homeAnimals) {  //идём по массиву с целью счёта живых животных. живые животные !=null
+            if (homeAnimal != null && !homeAnimal.getName().equals("Борис")) {
                 v--;
             }                             //считаем животных. если животное не мертво, убавляем счётчик рандомного животного
             if (v <= 0) {               //когда счётчик рандомного животного станет =0, т.е счётчик дойдёт до жертвы - вернуть животное, соответсвующее номеру в массиве
-                return homeAnimals[i1];
+                return homeAnimal;
 
             }
         }
@@ -178,25 +178,25 @@ public class Farm {
     }
 
 
-    public WildAnimals getRandomWildAnimal(Farm farm) {
+    WildAnimals getRandomWildAnimal(Farm farm) {
         int q = 0;
 
 
-        for (int i = 0; i < farm.wildAnimals.length; i++) {   //считаем количество диких животных на ферме, отдаём его в q
-            if (this.wildAnimals[i] != null && this.wildAnimals[i].getMiss()>0) {   //исключая животных у которых кончились попытки
+        for (WildAnimals wildAnimal : farm.wildAnimals) {   //считаем количество диких животных на ферме, отдаём его в q
+            if (wildAnimal != null && wildAnimal.getMiss() > 0) {   //исключая животных у которых кончились попытки
                 q++;
             }
         }
 
         int v = (int) (Math.random() * q) + 1;    //рандомно выбираем номер животного(не порядковый в массиве!) и передаём его в v(victim)
-        for (int i1 = 0; i1 < farm.wildAnimals.length; i1++) {  //идём по массиву с целью счёта живых животных. живые животные !=null и с наличием попыток атаковать
-            if (this.wildAnimals[i1] != null && this.wildAnimals[i1].getMiss() > 0 ) {
+        for (WildAnimals wildAnimal : farm.wildAnimals) {  //идём по массиву с целью счёта живых животных. живые животные !=null и с наличием попыток атаковать
+            if (wildAnimal != null && wildAnimal.getMiss() > 0) {
                 v--;
             }                             //считаем животных. если животное не мертво, убавляем счётчик рандомного животного
             // по сути у диких животных пока нет возможности умереть, у них только промахи, и достаточно было бы считать только их
             //но я скопировал этот метод из домашних, и проверка на смерть никому не мешает
             if (v <= 0) {               //когда счётчик рандомного животного станет =0, т.е счётчик дойдёт до жертвы - вернуть животное, соответсвующее номеру в массиве
-                return wildAnimals[i1];
+                return wildAnimal;
 
 
             }
@@ -209,11 +209,11 @@ public class Farm {
         return homeAnimals;
     }
 
-    public int getQty(Farm farm) {    //метод для получения количества животных(возможно уже не надо - перекочевало в получение рандомного животного)
+    int getQty(Farm farm) {    //метод для получения количества животных(возможно уже не надо - перекочевало в получение рандомного животного)
         int q = 0;  //снова нужно, для определения может ли фермер, ну, сам съесть животное
 
-        for (int i = 0; i < farm.homeAnimals.length; i++) {
-            if (this.homeAnimals[i] != null) {
+        for (HomeAnimals homeAnimal : farm.homeAnimals) {
+            if (homeAnimal != null) {
                 q++;
             }
 

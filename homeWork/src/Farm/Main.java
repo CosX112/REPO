@@ -90,7 +90,7 @@ public class Main {
 
 
         while (true) {
-            if (farmer.isAlive == false) {
+            if (!farmer.isAlive) {
                 System.out.println("Фермер умер от голода на " + day + " день");
                 break;
             }

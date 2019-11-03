@@ -12,7 +12,7 @@ abstract public class WildAnimals {
     private int attack;
     private int miss;
 
-    public WildAnimals(String title, int weight, int speed, int hp, int attack) {
+    WildAnimals(String title, int weight, int speed, int hp, int attack) {
         this.title = title;
         this.weight = weight;
         this.speed = speed;

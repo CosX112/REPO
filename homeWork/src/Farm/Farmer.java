@@ -7,10 +7,10 @@ import java.util.Random;
 
 public class Farmer {
 
-    int res = 3;
+    private int res = 3;
     boolean isAlive = true;
 
-    public void eat(Farm farm) {
+    void eat(Farm farm) {
 
         if (res > 0) {
             System.out.println("Фермер покушал и сыт");
@@ -38,7 +38,7 @@ public class Farmer {
     }
 
 
-    public boolean defend(WildAnimals p) {
+    boolean defend(WildAnimals p) {
         boolean def;
         Random random = new Random();
 
@@ -52,19 +52,19 @@ public class Farmer {
         return def;
     }
 
-    public void feed(Farm farm) {
+    void feed(Farm farm) {
         farm.feeding(farm);
         System.out.println("Фермер кормит животных");
     }
 
-    public void gather(Farm farm) {
+    void gather(Farm farm) {
 
         System.out.println("Фермер собрал " + farm.gathering(farm) + " ресурсов");
         res = res + farm.gathering(farm);
         System.out.println("У фермера осталось " + res + " ресурсов");
     }
 
-    public int getRes() {
+    private int getRes() {
         return this.res;
     }
 

@@ -8,7 +8,7 @@ abstract public class HomeAnimals {
     private int speed;
     private int hp;
     int res;
-    int maxHp;
+    private int maxHp;
 
     HomeAnimals(String name, int weight, int speed, int hp) {
         this.name = name;
@@ -68,11 +68,8 @@ abstract public class HomeAnimals {
     }
 
     public void setHp(int hp) {
-        if (hp > this.getMaxHp()) {    //проверочка для огнаничения максимального здоровья домашних животных (чтоб по ферме не ходили мегакуры с хп > 9000)
-            this.hp = this.getMaxHp();
-        } else {
-            this.hp = hp;
-        }
+        //проверочка для огнаничения максимального здоровья домашних животных (чтоб по ферме не ходили мегакуры с хп > 9000)
+        this.hp = Math.min(hp, this.getMaxHp());
     }
 
 }
