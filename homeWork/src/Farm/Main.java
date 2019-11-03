@@ -2,6 +2,8 @@ package Farm;
 
 import Farm.Animals.Home.Cat;
 import Farm.Animals.Home.Chicken;
+import Farm.Animals.Home.Cow;
+import Farm.Animals.Home.Rabbit;
 import Farm.Animals.Home.HomeAnimals;
 import Farm.Animals.Wild.Bear;
 import Farm.Animals.Wild.Fox;
@@ -60,43 +62,59 @@ public class Main {
 
     public static void main(String[] args) {
         int day = 0;
+        boolean def = false;
+        WildAnimals p;
         Farmer farmer = new Farmer();
         Chicken derp = new Chicken("Курица", 2, 5, 3, 1);
         Chicken derp1 = new Chicken("Маленькая курица", 2, 5, 3, 1);
         Chicken derp2 = new Chicken("Великая курица", 2, 5, 3, 1);
         Cat boris = new Cat("Борис", 3, 10, 9);
+        Cow burenka = new Cow("Бурёнка", 50, 3, 10, 2);
 
-        Bear bear = new Bear("Медведь", 50, 4, 30, 30);
+        Bear bear = new Bear("Медведь", 50, 6, 30, 30);
         Fox fox = new Fox("Лисица", 5, 11, 10, 5);
+        Fox fox1 = new Fox("Лисица", 5, 11, 10, 5);
+        Fox fox2 = new Fox("Лисица", 5, 11, 10, 5);
         Wolf wolf = new Wolf("Волк", 15, 6, 20, 10);
+        Wolf wolf1 = new Wolf("Волк", 15, 6, 20, 10);
 
         Farm farm = new Farm();
-        farm.addHomeAnimal(boris);
-        farm.addHomeAnimal(derp);
-        farm.addHomeAnimal(derp1);
-        farm.addHomeAnimal(derp2);
+        farm.addHomeAnimal(boris, derp, derp1, derp2, burenka);
         System.out.println(farm);
-        System.out.println(farm.getQty(farm));
-        farm.addWildAnimal(bear);
-        farm.addWildAnimal(fox);
-        farm.addWildAnimal(wolf);
+        // System.out.println(farm.getQty(farm));
+        farm.addWildAnimal(bear, wolf, wolf1, fox, fox1, fox2);
+       // farm.addWildAnimal(bear);
+       // farm.addWildAnimal(fox);
+       // farm.addWildAnimal(wolf);
         // AttackAble.attack(farm.getRandomHomeAnimal(farm));
 
 
-        while (farmer.isAlive) {
-            farmer.eat();
+        while (true) {
+            if (farmer.isAlive == false) {
+                System.out.println("Фермер умер от голода на " + day + " день");
+                break;
+            }
+            farmer.eat(farm);
             //           System.out.println(farmer.getRes());
-            farmer.defend();
-            farm.getRandomWildAnimal(farm).attack(farm.getRandomHomeAnimal(farm), farm);
-            System.out.println(farm);
+            p = farm.getRandomWildAnimal(farm);
+            if (p == null){
+                System.out.println("Фермер стал грозой леса, фермера больше не тревожат лесные звери");
+                break;
+            }
+            System.out.println("Зверь "+ p.getTitle() + " атакует ферму");
+            def = farmer.defend(p);  //фермер рандомно защищает или нет ферму
+          //  System.out.println(farm);
+            p.attack(farm.getRandomHomeAnimal(farm), farm, def);
+        //    System.out.println(farm);
+        //    System.out.println(farmer.getRes());
 
             farmer.feed(farm);
-            farmer.gather();
+            farmer.gather(farm);
             System.out.println("День заканчивается");
             day++;
             System.out.println("Наступает день " + day);
         }
-        System.out.println("Фермер умер от голода на " + day + " день");
+        //  System.out.println("Фермер умер от голода на " + day + " день");
 
 
     }

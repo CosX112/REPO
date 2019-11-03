@@ -8,15 +8,24 @@ abstract public class HomeAnimals {
     private int speed;
     private int hp;
     int res;
+    int maxHp;
 
     HomeAnimals(String name, int weight, int speed, int hp) {
         this.name = name;
         this.weight = weight;
         this.speed = speed;
         this.hp = hp;
+        this.maxHp = hp;
     }
 
 
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+    public int getRes() {
+        return res;
+    }
 
     @Override
     public String toString() {
@@ -28,7 +37,6 @@ abstract public class HomeAnimals {
                 ", res=" + res +
                 '}';
     }
-
 
 
     public String getName() {
@@ -56,12 +64,15 @@ abstract public class HomeAnimals {
     }
 
     public int getHp() {
-
         return hp;
     }
 
     public void setHp(int hp) {
-
-        this.hp = hp;
+        if (hp > this.getMaxHp()) {    //проверочка для огнаничения максимального здоровья домашних животных (чтоб по ферме не ходили мегакуры с хп > 9000)
+            this.hp = this.getMaxHp();
+        } else {
+            this.hp = hp;
+        }
     }
+
 }
