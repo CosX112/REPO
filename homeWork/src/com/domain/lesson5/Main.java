@@ -1,6 +1,8 @@
 package com.domain.lesson5;
 
 import com.domain.lesson5.unit.*;
+import com.domain.lesson5.unit.King;
+
 
 
 import java.util.Scanner;
@@ -29,6 +31,7 @@ public class Main {
         }
         BattleUnits enemy;
         enemy = BattleUnits.RandomBattleUnits("warrior");
+        Unit king =  King.GetKing();
 
 
         //enemy = new Warrior("Злодей", 10, 8, 10);
@@ -41,8 +44,11 @@ public class Main {
         System.out.println();
 
         System.out.println(enemy.getHP());
+        System.out.println(king);
 
     }
+
+
 }
 /*
  *приципы:

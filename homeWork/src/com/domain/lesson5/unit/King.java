@@ -8,10 +8,9 @@ public class King extends Unit {
         this.HP = HP;
 
     }
-public void GetKing(){
-      name = "Король";
-      speed = 10;
 
+public static Unit GetKing(){
+      return new King("Король",10,10);
 }
 
     public void rest() {
