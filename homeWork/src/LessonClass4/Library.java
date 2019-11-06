@@ -20,6 +20,9 @@ public class Library {
                 if (this.books[i] == null) {
                     this.books[i] = newBooks[i1];
                     break; //return;
+                } else {
+                    System.out.println("В библиотеке кончилось место, милорд");
+                    break;
                 }
 
             }
@@ -65,24 +68,25 @@ public class Library {
     public Book takeHome(String title) {
         int i = 0;
         //    Book returnBook = null;
-        while (true){
-        if (this.books[i] == null || i >= (books.length)) {
-            return null;
-        } else {
+        while (true) {
+            if (this.books[i] == null || i >= (books.length)) {
+                return null;
+            } else {
 
-            if (title.equals(this.books[i].getTitle())) {
-                if (this.books[i].isAvailable && this.books[i].isForHome) {
-                    this.books[i].setAvailable(false);
-                    return books[i];
-                } else {
-                    return null;
+                if (title.equals(this.books[i].getTitle())) {
+                    if (this.books[i].isAvailable && this.books[i].isForHome) {
+                        this.books[i].setAvailable(false);
+                        return books[i];
+                    } else {
+                        return null;
+                    }
+
                 }
-
             }
-        }
-        i++;
+            i++;
 
-    }}
+        }
+    }
 
     //в    этом промеждутке проверяем есть ли книга, если нету null, если есть, но забрали, null, если незя взять, null
     //если можно взять и она есть, поменять флаг доступна на false
@@ -96,3 +100,4 @@ public class Library {
         this.books = books;
     }
 }
+// добавить проверку на добавление нескольких книг, тчоб нее добавлять больше чем есть в массиеве места
