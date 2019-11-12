@@ -17,7 +17,55 @@ public class HomeWork {
         strings = Files.readAllLines(file.toPath());
         // wan("the");
         // second();
-        five();
+        thrd();
+        // five();
+    }
+
+    private static void thrd() {
+        HashMap<String, Integer> userHashMap = new HashMap<>();
+
+        ValueComparator bvc = new ValueComparator(userHashMap);
+        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+
+        for (int i = 0; i < strings.size(); i++) {
+            if (!strings.get(i).isEmpty()) {
+                int length = 0;
+                ArrayList<String> words = new ArrayList<>();
+                words.addAll(Arrays.asList(strings.get(i).split("[!?,.\\s]")));
+                length = words.size();
+                // System.out.println("Количество строк в строке: " + length);
+                for (int i1 = 0; i1 < length; i1++) {
+                    //  System.out.println("Количество слов в строке: " + words[i1].toString());
+                    if (!userHashMap.containsKey(words.get(i1))) {
+                        userHashMap.put(words.get(i1), 1);
+                    } else {
+                        int tmp = userHashMap.get(words.get(i1)) + 1;
+                        userHashMap.put(words.get(i1), tmp);
+                    }
+                }
+            }
+        }
+        System.out.println(userHashMap);
+        sorted_map.putAll(userHashMap);
+        System.out.println(sorted_map);
+    }
+
+    static class ValueComparator implements Comparator<String> {
+        Map<String, Integer> base;
+
+        public ValueComparator(Map<String, Integer> base) {
+            this.base = base;
+        }
+
+        // Note: this comparator imposes orderings that are inconsistent with
+        // equals.
+        public int compare(String a, String b) {
+            if (base.get(a) >= base.get(b)) {
+                return -1;
+            } else {
+                return 1;
+            } // returning 0 would merge keys
+        }
     }
 
     private static void five() {
