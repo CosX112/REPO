@@ -11,14 +11,30 @@ public class homeWork {
 
 
         try {
-            splitFile(file, file1, file2);
+            // splitFile(file, file1, file2);
             // wan();
+            glue(file, file1, file2);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
+    }
+
+    private static void glue(File file, File file1, File file2) throws IOException {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file);
+             FileInputStream fileInputStream = new FileInputStream(file1);
+             FileInputStream fileInputStream1 = new FileInputStream(file2);) {
+            byte[] buf = new byte[8];
+            int data;
+            while ((data = fileInputStream.read(buf)) > 0) {
+                fileOutputStream.write(buf, 0, data);
+            }
+            while ((data = fileInputStream1.read(buf)) > 0) {
+                fileOutputStream.write(buf, 0, data);
+            }
+        }
     }
 
     private static void wan() throws IOException {
@@ -32,13 +48,13 @@ public class homeWork {
 
             int size = (((int) file.length()) / 2) / 8;
 
-            System.out.println(size);
+            //  System.out.println(size);
             byte[] buf = new byte[8];
             int data;
             int i = 0;
             while ((data = fileInputStream.read(buf)) > 0) {
-                System.out.println(data);
-                System.out.println(Arrays.toString(buf));
+                //    System.out.println(data);
+                //  System.out.println(Arrays.toString(buf));
                 if (i <= size) {
                     fileOutputStream.write(buf, 0, data);
                 } else {
