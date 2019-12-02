@@ -32,14 +32,25 @@ public class TransactionsTask {
         // TODO: найти сумму транзакций по каждому аккаунту
 
 
-        transactionStream
+        /*transactionStream
                 .parallel()
                 .collect(Collectors.groupingBy(Transaction::getAccount))
                 .entrySet()
                 .parallelStream()
+               .flatMap(accountListEntry -> )
 
                 .forEach(System.out::println);
-
+*/
+        sumOfTransactionByEachAccount =
+                transactionStream
+                        .parallel()
+                        .collect(Collectors.groupingBy(Transaction::getAccount))
+                        .entrySet()
+                        .parallelStream()
+                        .flatMap(accountListEntry -> accountListEntry.getValue().stream())
+                        .collect(Collectors.toMap(transaction -> transaction.getAccount().getNumber(), Transaction::getSum, Long::sum));
+        //.reduce((a, b) -> a.getSum() + b.getSum())
+        System.out.println(sumOfTransactionByEachAccount);
 
     }
 
