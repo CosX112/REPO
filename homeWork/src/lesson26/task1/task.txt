@@ -1,0 +1,10 @@
+команды в консоли
+
+time
+help
+getFromFile
+
+
+ ClassLoader loader = MapLesson.class.getClassLoader();
+        File file = new File(loader.getResource("lesson12/res/wp.txt").getFile());
+
